@@ -13,6 +13,8 @@ parser.add_argument("-d", "--data", nargs="?", default=None, help="data to hold"
 parser.add_argument("-r", "--retrieve", help="set mode to retrieve", action='store_true')
 parser.add_argument("-h", "--hold", help="set mode to hold", action='store_true')
 parser.add_argument("-n", "--newline", help="text returned would output a newline in addition", action='store_true')
+parser.add_argument("-l", "--list", help="list all saved elements", action='store_true')
+parser.add_argument("-c", "--clear", help="clears set key", action='store_true')
 parser.add_argument("-?", "--help", help="provides help", action='store_true')
 
 args = parser.parse_args()
@@ -21,6 +23,11 @@ hold = Hold()
 
 if args.help:
     parser.print_help()
+elif args.list:
+    stdout.write(hold.list())
+elif args.clear:
+    if args.key:
+        hold.clear(key=args.key)
 elif args.retrieve and args.hold:
     logger.error("cannot specify two modes at once")
 elif args.retrieve:

@@ -1,7 +1,7 @@
 # hold
 simple cli tool that can temporarily 'hold' text. think of it as a clipboard for your terminal.
 ```
-usage: hold [-k [KEY]] [-d [DATA]] [-r] [-h] [-n] [-?]
+usage: hold [-k [KEY]] [-d [DATA]] [-r] [-h] [-n] [-l] [-c] [-?]
 
 a cli tool for "holding" text or output temporarily. effectively a clipboard made only for terminals
 
@@ -10,9 +10,10 @@ options:
   -d, --data [DATA]  data to hold
   -r, --retrieve     set mode to retrieve
   -h, --hold         set mode to hold
-  -n, --newline      text returned would output a newline in addition
+  -n, --newline      text returned would include a newline appended to the end of the output
+  -l, --list         list all saved elements
+  -c, --clear        clears set key
   -?, --help         provides help
-
 ```
 
 
@@ -38,6 +39,21 @@ really important stuff i refuse to copy to the clipboard
 ```
 
 this data will save between sessions on a file in your computer. this is not encrypted! please be careful with the data you save!
+
+if you wish to delete some data that is saved, you can use the `-c` argument
+```
+hold -ck key_goes_here
+```
+
+listing all data in the hold can be done with just a simple command as well
+```
+hold -l
+```
+output:
+```
+bar = foo
+baz = foo
+```
 
 ### dependencies
 this program requires __loguru__, __python 3.13__ and __pyinstaller__, which can be installed by the following

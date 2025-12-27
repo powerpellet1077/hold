@@ -17,6 +17,7 @@ class Hold(Loggable):
             self.error(f"unable to write new data to key {key}, err: {str(e)}")
 
     def retrieve(self, key:str="global"):
+        """returns a saved value present at the given key"""
         try:
             dat = self.d.get()
             if key in dat:
@@ -25,3 +26,27 @@ class Hold(Loggable):
                 self.error(f"key {key} not found inside hold, halting")
         except Exception as e:
             self.error(f"unable to retrieve data from key {key}, err: {str(e)}")
+
+    def list(self) -> str:
+        """returns all saved values in a formatted string"""
+        try:
+            dat:dict = self.d.get()
+            formatted = ""
+            for elm in dat.keys():
+                formatted += f"{elm} = {dat[elm]}\n"
+            return formatted
+        except Exception as e:
+            self.error(f"unable to retrieve data, err: {str(e)}")
+            return ""
+
+    def clear(self, key:str="global"):
+        """clears a saved value present at the given key"""
+        try:
+            dat = self.d.get()
+            if key in dat:
+                del dat[key]
+            else:
+                self.error(f"element {key} not in hold")
+            self.d.write(dat)
+        except Exception as e:
+            self.error(f"unable to write new data to key {key}, err: {str(e)}")
