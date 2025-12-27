@@ -30,6 +30,35 @@ hellow world :D
 
 this could be useful for saving text/tokens without using the clipboard directly
 
+saving to a specific key is more like
+```
+hold -hk key_goes_here -d "really important stuff i refuse to copy to the clipboard"
+hold -nrk key_goes_here
+really important stuff i refuse to copy to the clipboard
+```
+
+this data will save between sessions on a file in your computer. this is not encrypted! please be careful with the data you save!
+
+### dependencies
+this program requires __loguru__, __python 3.13__ and __pyinstaller__, which can be installed by the following
+#### arch:
+```
+pacman -S python python-loguru python-pyinstaller
+```
+#### eos:
+```
+yay -S python python-loguru python-pyinstaller
+```
+#### other distros / windows (with full pip support)
+```
+pip install -r requirements.txt
+```
+or 
+```
+pip install loguru pyinstaller
+```
+for other systems that __do not__ have pip support, please consult the community for installing python packages
+
 ### compiling
 #### linux:
 ```

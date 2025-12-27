@@ -17,6 +17,8 @@ class Loggable(Logger):
         )
 
         self.level("INFO", color="<blue>")
+        self.level("ERROR", color="<red>")
+        self.level("WARNING", color="<yellow>")
 
 
         self.remove()
